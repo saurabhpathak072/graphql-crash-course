@@ -2,6 +2,8 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 
 import {typeDefs} from './schema.js'
+import { fetchCommentsList, fetchPostById } from './util/Api.js';
+
 import db from './_db.js'
 
 const resolvers = {
@@ -23,6 +25,13 @@ const resolvers = {
         },
         author(_, args){
             return db.authors.find(auth=>auth.id === args.id);
+        },
+        comments(){
+            
+            return fetchCommentsList()
+        },
+        post(_,args){
+            return fetchPostById(args.id);
         }
        
     },

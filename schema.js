@@ -23,6 +23,21 @@ type Author {
     review:[Review!]
 }
 
+type Comment {
+    postId: Int!
+    id: ID!
+    name: String!
+    email: String!
+    body: String
+}
+
+type Post {
+    userId: Int!
+    id: ID!
+    title: String!
+    body: String!
+}
+
 type Query {
     reviews: [Review]
     review(id: ID!): Review
@@ -30,6 +45,8 @@ type Query {
     game(id: ID!): Game
     authors: [Author] 
     author(id: ID!): Author
+    comments: [Comment!]!
+    post(id: ID): Post
 }
 
 type Mutation {
